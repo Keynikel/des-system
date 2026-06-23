@@ -1,0 +1,50 @@
+:root {
+  /* ── Font sizes ── */
+  --font-size-display: 40px;
+  --font-size-display-sm: 32px;
+  --font-size-h1: 28px;
+  --font-size-h2: 24px;
+  --font-size-h3: 20px;
+  --font-size-h4: 16px;
+  --font-size-h5: 14px;
+  --font-size-body: 14px;
+  --font-size-body-bold: 14px;
+  --font-size-caption: 12px;
+  --font-size-caption-medium: 12px;
+
+  /* ── Line heights ── */
+  --line-height-display: 48px;
+  --line-height-h1: 34px;
+  --line-height-h2: 32px;
+  --line-height-h3: 24px;
+  --line-height-h4: 20px;
+  --line-height-h5: 22px;
+  --line-height-body: 22px;
+  --line-height-body-bold: 22px;
+  --line-height-caption: 20px;
+  --line-height-caption-medium: 20px;
+
+  /* ── Letter spacing ── */
+  --letter-spacing-display: -0.5px;
+  --letter-spacing-h1: 0px;
+  --letter-spacing-h2: 0px;
+  --letter-spacing-h3: 0px;
+  --letter-spacing-h4: 0px;
+  --letter-spacing-h5: 0.1px;
+  --letter-spacing-body: 0.1px;
+  --letter-spacing-body-bold: 0.1px;
+  --letter-spacing-caption: 0.2px;
+  --letter-spacing-caption-medium: 0.2px;
+
+  /* ── Font weights ── */
+  --font-weight-display: 600;
+  --font-weight-h1: 400;
+  --font-weight-h2: 600;
+  --font-weight-h3: 500;
+  --font-weight-h4: 500;
+  --font-weight-h5: 600;
+  --font-weight-body: 400;
+  --font-weight-body-bold: 600;
+  --font-weight-caption: 400;
+  --font-weight-caption-medium: 500;
+}

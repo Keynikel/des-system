@@ -1,0 +1,160 @@
+@import "tailwindcss";
+@import "./tokens/colors.css";
+@import "./tokens/typography.css";
+@import "./tokens/spacing.css";
+
+@theme {
+  /* ── Palette ── */
+  --color-palette-blue-1: var(--color-palette-blue-1);
+  --color-palette-blue-2: var(--color-palette-blue-2);
+  --color-palette-blue-3: var(--color-palette-blue-3);
+  --color-palette-blue-4: var(--color-palette-blue-4);
+  --color-palette-blue-5: var(--color-palette-blue-5);
+  --color-palette-blue-6: var(--color-palette-blue-6);
+  --color-palette-blue-7: var(--color-palette-blue-7);
+  --color-palette-blue-8: var(--color-palette-blue-8);
+  --color-palette-blue-9: var(--color-palette-blue-9);
+  --color-palette-blue-10: var(--color-palette-blue-10);
+  --color-palette-blue-11: var(--color-palette-blue-11);
+  --color-palette-blue-12: var(--color-palette-blue-12);
+
+  --color-palette-gray-1: var(--color-palette-gray-1);
+  --color-palette-gray-2: var(--color-palette-gray-2);
+  --color-palette-gray-3: var(--color-palette-gray-3);
+  --color-palette-gray-4: var(--color-palette-gray-4);
+  --color-palette-gray-5: var(--color-palette-gray-5);
+  --color-palette-gray-6: var(--color-palette-gray-6);
+  --color-palette-gray-7: var(--color-palette-gray-7);
+  --color-palette-gray-8: var(--color-palette-gray-8);
+  --color-palette-gray-9: var(--color-palette-gray-9);
+  --color-palette-gray-10: var(--color-palette-gray-10);
+  --color-palette-gray-11: var(--color-palette-gray-11);
+  --color-palette-gray-12: var(--color-palette-gray-12);
+
+  --color-palette-green-1: var(--color-palette-green-1);
+  --color-palette-green-2: var(--color-palette-green-2);
+  --color-palette-green-3: var(--color-palette-green-3);
+  --color-palette-green-4: var(--color-palette-green-4);
+  --color-palette-green-5: var(--color-palette-green-5);
+  --color-palette-green-6: var(--color-palette-green-6);
+  --color-palette-green-7: var(--color-palette-green-7);
+  --color-palette-green-8: var(--color-palette-green-8);
+  --color-palette-green-9: var(--color-palette-green-9);
+  --color-palette-green-10: var(--color-palette-green-10);
+  --color-palette-green-11: var(--color-palette-green-11);
+  --color-palette-green-12: var(--color-palette-green-12);
+
+  --color-palette-red-1: var(--color-palette-red-1);
+  --color-palette-red-2: var(--color-palette-red-2);
+  --color-palette-red-3: var(--color-palette-red-3);
+  --color-palette-red-4: var(--color-palette-red-4);
+  --color-palette-red-5: var(--color-palette-red-5);
+  --color-palette-red-6: var(--color-palette-red-6);
+  --color-palette-red-7: var(--color-palette-red-7);
+  --color-palette-red-8: var(--color-palette-red-8);
+  --color-palette-red-9: var(--color-palette-red-9);
+  --color-palette-red-10: var(--color-palette-red-10);
+  --color-palette-red-11: var(--color-palette-red-11);
+  --color-palette-red-12: var(--color-palette-red-12);
+
+  --color-palette-orange-1: var(--color-palette-orange-1);
+  --color-palette-orange-2: var(--color-palette-orange-2);
+  --color-palette-orange-3: var(--color-palette-orange-3);
+  --color-palette-orange-4: var(--color-palette-orange-4);
+  --color-palette-orange-5: var(--color-palette-orange-5);
+  --color-palette-orange-6: var(--color-palette-orange-6);
+  --color-palette-orange-7: var(--color-palette-orange-7);
+  --color-palette-orange-8: var(--color-palette-orange-8);
+  --color-palette-orange-9: var(--color-palette-orange-9);
+  --color-palette-orange-10: var(--color-palette-orange-10);
+  --color-palette-orange-11: var(--color-palette-orange-11);
+  --color-palette-orange-12: var(--color-palette-orange-12);
+
+  --color-palette-black: var(--color-palette-black);
+  --color-palette-white: var(--color-palette-white);
+
+  /* ── Semantic tokens ── */
+  --color-neutrals-bg: var(--color-neutrals-bg);
+  --color-neutrals-bg-hover: var(--color-neutrals-bg-hover);
+  --color-neutrals-bg-active: var(--color-neutrals-bg-active);
+  --color-neutrals-bg-canvas: var(--color-neutrals-bg-canvas);
+  --color-neutrals-bg-muted: var(--color-neutrals-bg-muted);
+  --color-neutrals-content: var(--color-neutrals-content);
+  --color-neutrals-content-subdued: var(--color-neutrals-content-subdued);
+  --color-neutrals-content-noninteractive: var(--color-neutrals-content-noninteractive);
+  --color-neutrals-border: var(--color-neutrals-border);
+  --color-neutrals-border-hover: var(--color-neutrals-border-hover);
+
+  --color-primary-bg: var(--color-primary-bg);
+  --color-primary-bg-hover: var(--color-primary-bg-hover);
+  --color-primary-bg-active: var(--color-primary-bg-active);
+  --color-primary-bg-muted: var(--color-primary-bg-muted);
+  --color-primary-content: var(--color-primary-content);
+  --color-primary-content-subdued: var(--color-primary-content-subdued);
+  --color-primary-border: var(--color-primary-border);
+
+  --color-critical-bg: var(--color-critical-bg);
+  --color-critical-bg-muted: var(--color-critical-bg-muted);
+  --color-critical-content: var(--color-critical-content);
+  --color-critical-border: var(--color-critical-border);
+
+  --color-warning-bg: var(--color-warning-bg);
+  --color-warning-bg-muted: var(--color-warning-bg-muted);
+  --color-warning-content: var(--color-warning-content);
+  --color-warning-border: var(--color-warning-border);
+
+  --color-success-bg: var(--color-success-bg);
+  --color-success-bg-muted: var(--color-success-bg-muted);
+  --color-success-content: var(--color-success-content);
+  --color-success-border: var(--color-success-border);
+
+  /* ── Typography ── */
+  --font-size-h1: var(--font-size-h1);
+  --font-size-h2: var(--font-size-h2);
+  --font-size-h3: var(--font-size-h3);
+  --font-size-h4: var(--font-size-h4);
+  --font-size-h5: var(--font-size-h5);
+  --font-size-body: var(--font-size-body);
+  --font-size-body-bold: var(--font-size-body-bold);
+  --font-size-caption: var(--font-size-caption);
+  --font-size-caption-medium: var(--font-size-caption-medium);
+
+  --line-height-h1: var(--line-height-h1);
+  --line-height-h2: var(--line-height-h2);
+  --line-height-h3: var(--line-height-h3);
+  --line-height-h4: var(--line-height-h4);
+  --line-height-h5: var(--line-height-h5);
+  --line-height-body: var(--line-height-body);
+  --line-height-caption: var(--line-height-caption);
+
+  --letter-spacing-h5: var(--letter-spacing-h5);
+  --letter-spacing-body: var(--letter-spacing-body);
+  --letter-spacing-caption: var(--letter-spacing-caption);
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+/* ── LoadingIndicator spin animation ── */
+@keyframes loading-indicator-spin {
+  to { transform: rotate(360deg); }
+}
+.loading-indicator-spin {
+  animation: loading-indicator-spin 1s linear infinite;
+  transform-origin: 50% 50%;
+}
+@media (prefers-reduced-motion: reduce) {
+  .loading-indicator-spin { animation-duration: 3s; }
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, system-ui, sans-serif;
+  background: var(--color-neutrals-bg-canvas);
+  color: var(--color-neutrals-content);
+}
+
+#root {
+  min-height: 100svh;
+}

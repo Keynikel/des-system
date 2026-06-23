@@ -1,0 +1,169 @@
+:root {
+  /* ── Primitives: blue ── */
+  --color-palette-blue-1: #fdfdfe;
+  --color-palette-blue-2: #f7f9ff;
+  --color-palette-blue-3: #edf2ff;
+  --color-palette-blue-4: #dfe9ff;
+  --color-palette-blue-5: #d0deff;
+  --color-palette-blue-6: #bdcfff;
+  --color-palette-blue-7: #a7bcff;
+  --color-palette-blue-8: #89a1fe;
+  --color-palette-blue-9: #4f62ff;
+  --color-palette-blue-10: #4758e3;
+  --color-palette-blue-11: #4151db;
+  --color-palette-blue-12: #202a65;
+
+  /* ── Primitives: gray ── */
+  --color-palette-gray-1: #fcfcfd;
+  --color-palette-gray-2: #f9f9fb;
+  --color-palette-gray-3: #f0f0f3;
+  --color-palette-gray-4: #e8e8ec;
+  --color-palette-gray-5: #e0e1e6;
+  --color-palette-gray-6: #d9d9e0;
+  --color-palette-gray-7: #cdced6;
+  --color-palette-gray-8: #b9bbc6;
+  --color-palette-gray-9: #8b8d98;
+  --color-palette-gray-10: #80838d;
+  --color-palette-gray-11: #60646c;
+  --color-palette-gray-12: #1c2024;
+
+  /* ── Primitives: green ── */
+  --color-palette-green-1: #fbfefc;
+  --color-palette-green-2: #f4fbf6;
+  --color-palette-green-3: #e6f6eb;
+  --color-palette-green-4: #d6f1df;
+  --color-palette-green-5: #c4e8d1;
+  --color-palette-green-6: #adddc0;
+  --color-palette-green-7: #8eceaa;
+  --color-palette-green-8: #5bb98b;
+  --color-palette-green-9: #30a46c;
+  --color-palette-green-10: #2b9a66;
+  --color-palette-green-11: #218358;
+  --color-palette-green-12: #193b2d;
+
+  /* ── Primitives: red ── */
+  --color-palette-red-1: #fffcfd;
+  --color-palette-red-2: #fff7f8;
+  --color-palette-red-3: #feeaed;
+  --color-palette-red-4: #ffdce1;
+  --color-palette-red-5: #ffced6;
+  --color-palette-red-6: #f8bfc8;
+  --color-palette-red-7: #efacb8;
+  --color-palette-red-8: #e592a3;
+  --color-palette-red-9: #e54666;
+  --color-palette-red-10: #dc3b5d;
+  --color-palette-red-11: #ca244d;
+  --color-palette-red-12: #64172b;
+
+  /* ── Primitives: orange ── */
+  --color-palette-orange-1: #fefcfb;
+  --color-palette-orange-2: #fff7ed;
+  --color-palette-orange-3: #ffefd6;
+  --color-palette-orange-4: #ffdfb5;
+  --color-palette-orange-5: #ffd19a;
+  --color-palette-orange-6: #ffc182;
+  --color-palette-orange-7: #f5ae73;
+  --color-palette-orange-8: #ec9455;
+  --color-palette-orange-9: #f76b15;
+  --color-palette-orange-10: #ef5f00;
+  --color-palette-orange-11: #cc4e00;
+  --color-palette-orange-12: #582d1d;
+
+  /* ── Primitives: black & white ── */
+  --color-palette-black: #000000;
+  --color-palette-white: #ffffff;
+
+  /* ── Primitives: overlays ── */
+  --color-palette-overlays-1: #0000000d;
+  --color-palette-overlays-2: #0000001a;
+  --color-palette-overlays-3: #00000026;
+  --color-palette-overlays-4: #00000033;
+  --color-palette-overlays-5: #0000004d;
+  --color-palette-overlays-6: #00000066;
+  --color-palette-overlays-7: #00000080;
+  --color-palette-overlays-8: #00000099;
+  --color-palette-overlays-9: #000000b2;
+  --color-palette-overlays-10: #000000cc;
+  --color-palette-overlays-11: #000000e5;
+  --color-palette-overlays-12: #000000f2;
+
+  /* ── Color tokens: neutrals ── */
+  --color-neutrals-bg: #fcfcfd;
+  --color-neutrals-bg-hover: #f9f9fb;
+  --color-neutrals-bg-active: #f0f0f3;
+  --color-neutrals-bg-noninteractive: #f9f9fb;
+  --color-neutrals-bg-muted: #f0f0f3;
+  --color-neutrals-bg-muted-hover: #e8e8ec;
+  --color-neutrals-bg-muted-active: #e0e1e6;
+  --color-neutrals-bg-canvas: #ffffff;
+  --color-neutrals-bg-scrim: #0000004d;
+  --color-neutrals-content: #1c2024;
+  --color-neutrals-content-hover: #60646c;
+  --color-neutrals-content-active: #1c2024;
+  --color-neutrals-content-noninteractive: #8b8d98;
+  --color-neutrals-content-subdued: #60646c;
+  --color-neutrals-border: #cdced6;
+  --color-neutrals-border-hover: #b9bbc6;
+  --color-neutrals-border-active: #8b8d98;
+  --color-neutrals-border-noninteractive: #e0e1e6;
+
+  /* ── Color tokens: primary ── */
+  --color-primary-bg: #4758e3;
+  --color-primary-bg-hover: #4f62ff;
+  --color-primary-bg-active: #4151db;
+  --color-primary-bg-noninteractive: #f7f9ff;
+  --color-primary-bg-muted: #edf2ff;
+  --color-primary-bg-muted-hover: #dfe9ff;
+  --color-primary-bg-muted-active: #d0deff;
+  --color-primary-content: #4758e3;
+  --color-primary-content-hover: #4151db;
+  --color-primary-content-active: #202a65;
+  --color-primary-content-subdued: #4f62ff;
+  --color-primary-border: #89a1fe;
+  --color-primary-border-noninteractive: #bdcfff;
+
+  /* ── Color tokens: critical ── */
+  --color-critical-bg: #dc3b5d;
+  --color-critical-bg-hover: #e54666;
+  --color-critical-bg-active: #ca244d;
+  --color-critical-bg-noninteractive: #fff7f8;
+  --color-critical-bg-muted: #feeaed;
+  --color-critical-bg-muted-hover: #ffdce1;
+  --color-critical-bg-muted-active: #ffced6;
+  --color-critical-content: #ca244d;
+  --color-critical-content-hover: #dc3b5d;
+  --color-critical-content-active: #64172b;
+  --color-critical-content-subdued: #e54666;
+  --color-critical-border: #e592a3;
+  --color-critical-border-noninteractive: #f8bfc8;
+
+  /* ── Color tokens: warning ── */
+  --color-warning-bg: #ef5f00;
+  --color-warning-bg-hover: #f76b15;
+  --color-warning-bg-active: #cc4e00;
+  --color-warning-bg-noninteractive: #fefcfb;
+  --color-warning-bg-muted: #fff7ed;
+  --color-warning-bg-muted-hover: #ffefd6;
+  --color-warning-bg-muted-active: #ffdfb5;
+  --color-warning-content: #cc4e00;
+  --color-warning-content-hover: #ef5f00;
+  --color-warning-content-active: #cc4e00;
+  --color-warning-content-subdued: #f76b15;
+  --color-warning-border: #ec9455;
+  --color-warning-border-noninteractive: #ffc182;
+
+  /* ── Color tokens: success ── */
+  --color-success-bg: #2b9a66;
+  --color-success-bg-hover: #30a46c;
+  --color-success-bg-active: #218358;
+  --color-success-bg-noninteractive: #f4fbf6;
+  --color-success-bg-muted: #e6f6eb;
+  --color-success-bg-muted-hover: #d6f1df;
+  --color-success-bg-muted-active: #c4e8d1;
+  --color-success-content: #218358;
+  --color-success-content-hover: #2b9a66;
+  --color-success-content-active: #218358;
+  --color-success-content-subdued: #30a46c;
+  --color-success-border: #5bb98b;
+  --color-success-border-noninteractive: #adddc0;
+}
