@@ -15,6 +15,7 @@ import { LoadingIndicator } from '../../components/LoadingIndicator';
 import type { LoadingColor, LoadingSize } from '../../components/LoadingIndicator';
 import { Button } from '../../components/Button';
 import type { ButtonHierarchy } from '../../components/Button';
+import { Skeleton } from '../../components/ui/Skeleton/Skeleton';
 import { Home01 } from '../../icons/components/general/Home01';
 import { Plus } from '../../icons/components/general/Plus';
 import { Edit01 } from '../../icons/components/general/Edit01';
@@ -52,6 +53,7 @@ const NAV_SECTIONS = [
       { id: 'button',            label: 'Button'            },
       { id: 'breadcrumbs',       label: 'Breadcrumbs'       },
       { id: 'loading-indicator', label: 'Loading Indicator'  },
+      { id: 'skeleton',          label: 'Skeleton'           },
     ],
   },
 ] as const;
@@ -730,6 +732,125 @@ function ButtonSection() {
   );
 }
 
+// ── Section: Skeleton ─────────────────────────────────────────────────────────
+// Source of truth: Figma uo2jhkx6oBwYpiFJxWnLJf node 382:2542.
+
+function SkeletonSection() {
+  return (
+    <>
+      <PageHeader
+        title="Skeleton"
+        description="A shimmer placeholder shown while content loads. Compose blocks at any width, height, and radius to match the shape of the real content."
+      />
+
+      <SubSection id="otp-sk-shapes" title="Shapes">
+        <PreviewBox centered>
+          <div className="flex items-center gap-6">
+            <div className="flex flex-col items-center gap-2">
+              <Skeleton width="var(--spacing-12)" height="var(--spacing-12)" radius="var(--radius-full)" />
+              <span className="text-xs font-mono text-[var(--color-neutrals-content-noninteractive)]">circle</span>
+            </div>
+            <div className="flex flex-col items-center gap-2">
+              <Skeleton width="200px" height="var(--spacing-4)" />
+              <span className="text-xs font-mono text-[var(--color-neutrals-content-noninteractive)]">line</span>
+            </div>
+            <div className="flex flex-col items-center gap-2">
+              <Skeleton width="120px" height="var(--spacing-8)" radius="var(--radius-md)" />
+              <span className="text-xs font-mono text-[var(--color-neutrals-content-noninteractive)]">button</span>
+            </div>
+          </div>
+        </PreviewBox>
+      </SubSection>
+
+      <SubSection
+        id="otp-sk-states"
+        title="States"
+        description={<><InlineCode>forceState="static"</InlineCode> freezes the animation — useful for snapshot tests.</>}
+      >
+        <PreviewBox>
+          <div className="inline-grid grid-cols-[6rem_1fr] gap-x-8 gap-y-5 items-center">
+            <p className="text-xs font-mono text-[var(--color-neutrals-content-noninteractive)]">shimmer</p>
+            <Skeleton width="240px" height="var(--spacing-4)" forceState="shimmer" />
+            <p className="text-xs font-mono text-[var(--color-neutrals-content-noninteractive)]">static</p>
+            <Skeleton width="240px" height="var(--spacing-4)" forceState="static" />
+          </div>
+        </PreviewBox>
+      </SubSection>
+
+      <SubSection
+        id="otp-sk-card"
+        title="Card placeholder"
+        description="Avatar circle + name/subtitle lines + body text + button bar — a typical card loading state."
+      >
+        <PreviewBox centered>
+          <div
+            role="status"
+            aria-label="Loading…"
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              gap: 'var(--spacing-4)',
+              width: '320px',
+              padding: 'var(--spacing-5)',
+              borderRadius: 'var(--radius-lg)',
+              border: '1px solid var(--color-neutrals-border)',
+              background: 'var(--color-neutrals-bg-canvas)',
+            }}
+          >
+            <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--spacing-3)' }}>
+              <Skeleton width="var(--spacing-12)" height="var(--spacing-12)" radius="var(--radius-full)" />
+              <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 'var(--spacing-2)' }}>
+                <Skeleton width="60%" height="var(--spacing-4)" />
+                <Skeleton width="40%" height="var(--spacing-3)" />
+              </div>
+            </div>
+            <Skeleton width="100%" height="var(--spacing-4)" />
+            <Skeleton width="85%"  height="var(--spacing-4)" />
+            <Skeleton width="70%"  height="var(--spacing-4)" />
+            <div style={{ display: 'flex', gap: 'var(--spacing-2)', marginTop: 'var(--spacing-2)' }}>
+              <Skeleton width="var(--spacing-20)" height="var(--spacing-8)" radius="var(--radius-md)" />
+              <Skeleton width="var(--spacing-20)" height="var(--spacing-8)" radius="var(--radius-md)" />
+            </div>
+          </div>
+        </PreviewBox>
+      </SubSection>
+
+      <SubSection
+        id="otp-sk-table"
+        title="Table placeholder"
+        description="Three rows of skeleton cells in a grid — matches a data table loading state."
+      >
+        <PreviewBox>
+          <div role="status" aria-label="Loading…" style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-1)', width: '100%' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr 1fr 1fr', gap: 'var(--spacing-3)', padding: 'var(--spacing-2) var(--spacing-3)', borderBottom: '1px solid var(--color-neutrals-border)' }}>
+              {[80, 50, 50, 50].map((w, i) => (
+                <Skeleton key={i} width={`${w}%`} height="var(--spacing-3)" forceState="static" />
+              ))}
+            </div>
+            {[0, 1, 2].map(row => (
+              <div
+                key={row}
+                style={{
+                  display: 'grid',
+                  gridTemplateColumns: '2fr 1fr 1fr 1fr',
+                  gap: 'var(--spacing-3)',
+                  padding: 'var(--spacing-3)',
+                  borderBottom: '1px solid var(--color-neutrals-border)',
+                  background: row % 2 === 0 ? 'var(--color-neutrals-bg)' : 'var(--color-neutrals-bg-canvas)',
+                }}
+              >
+                {[90, 60, 70, 40].map((w, col) => (
+                  <Skeleton key={col} width={`${w}%`} height="var(--spacing-4)" />
+                ))}
+              </div>
+            ))}
+          </div>
+        </PreviewBox>
+      </SubSection>
+    </>
+  );
+}
+
 // ── Content router ────────────────────────────────────────────────────────────
 
 function SectionContent({ id }: { id: SectionId }) {
@@ -743,6 +864,7 @@ function SectionContent({ id }: { id: SectionId }) {
     case 'button':            return <ButtonSection />;
     case 'breadcrumbs':       return <BreadcrumbsSection />;
     case 'loading-indicator': return <LoadingSection />;
+    case 'skeleton':          return <SkeletonSection />;
   }
 }
 
