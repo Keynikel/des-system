@@ -15,16 +15,12 @@ import { LoadingIndicator } from '../../components/LoadingIndicator';
 import type { LoadingColor, LoadingSize } from '../../components/LoadingIndicator';
 import { Button } from '../../components/Button';
 import type { ButtonHierarchy } from '../../components/Button';
-import { Checkbox } from '../../components/Checkbox';
-import type { CheckedState, CheckboxForceState } from '../../components/Checkbox';
 import { Home01 } from '../../icons/components/general/Home01';
 import { Plus } from '../../icons/components/general/Plus';
 import { Edit01 } from '../../icons/components/general/Edit01';
 import { Trash01 } from '../../icons/components/general/Trash01';
 import * as Icons from '../../icons/components/index';
-import { ChevronDown }   from '../../icons/components/arrows/ChevronDown';
-import { Toggle01Right } from '../../icons/components/general/Toggle01Right';
-import { Type01 }        from '../../icons/components/editor/Type01';
+
 
 const toKebab = (s: string) =>
   s.replace(/([A-Z])/g, (_, c, i) => (i ? '-' : '') + c.toLowerCase())
@@ -54,14 +50,13 @@ const NAV_SECTIONS = [
       { id: 'avatar',      label: 'Avatar'      },
       { id: 'badge',       label: 'Badge'       },
       { id: 'button',            label: 'Button'            },
-      { id: 'checkbox',          label: 'Checkbox'          },
       { id: 'breadcrumbs',       label: 'Breadcrumbs'       },
       { id: 'loading-indicator', label: 'Loading Indicator'  },
     ],
   },
 ] as const;
 
-type SectionId = 'colors-tokens' | 'typography' | 'icons' | 'accordion' | 'avatar' | 'badge' | 'button' | 'checkbox' | 'breadcrumbs' | 'loading-indicator';
+type SectionId = 'colors-tokens' | 'typography' | 'icons' | 'accordion' | 'avatar' | 'badge' | 'button' | 'breadcrumbs' | 'loading-indicator';
 
 const ALL_ITEMS = NAV_SECTIONS.flatMap(s => s.items) as { id: SectionId; label: string }[];
 
@@ -735,233 +730,6 @@ function ButtonSection() {
   );
 }
 
-// ── Section: Checkbox ─────────────────────────────────────────────────────────
-// Source of truth: Figma 377:2609 (Checkbox).
-
-const CHECKED_STATES: CheckedState[] = ['unchecked', 'checked', 'indeterminate'];
-
-function CheckboxSection() {
-  return (
-    <>
-      <PageHeader
-        title="Checkbox"
-        description="A tri-state selection control. Supports unchecked, checked, and indeterminate states with optional label and subtitle. Hover and press show a circular ripple ring; disabled mutes the box colors."
-      />
-
-      <SubSection id="otp-cb-states" title="States">
-        <PreviewBox>
-          <div className="inline-grid grid-cols-[6rem_repeat(3,1fr)] gap-x-8 gap-y-5 items-center">
-            <div />
-            {CHECKED_STATES.map(v => (
-              <p key={v} className="text-xs font-mono text-[var(--color-neutrals-content-subdued)]">{v}</p>
-            ))}
-            {(['default', 'hover', 'pressed', 'disabled'] as const).map(state => [
-              <p key={`lbl-${state}`} className="text-xs font-mono text-[var(--color-neutrals-content-noninteractive)]">{state}</p>,
-              ...CHECKED_STATES.map(v => (
-                <Checkbox
-                  key={v}
-                  checked={v}
-                  forceState={state === 'default' ? undefined : state}
-                />
-              )),
-            ])}
-          </div>
-        </PreviewBox>
-      </SubSection>
-
-      <SubSection
-        id="otp-cb-label"
-        title="With label"
-        description={<>Pass a <InlineCode>label</InlineCode> string to render text to the right of the box. Clicking anywhere on the row (box or label) toggles the checkbox.</>}
-      >
-        <PreviewBox centered>
-          <div className="flex flex-col gap-4">
-            {CHECKED_STATES.map(v => (
-              <Checkbox key={v} checked={v} label={v.charAt(0).toUpperCase() + v.slice(1)} />
-            ))}
-          </div>
-        </PreviewBox>
-      </SubSection>
-
-      <SubSection
-        id="otp-cb-subtitle"
-        title="With subtitle"
-        description={<>Add a <InlineCode>subtitle</InlineCode> for helper text below the label. It lives outside the <InlineCode>&lt;label&gt;</InlineCode> and is indented 24 px to align under the label text.</>}
-      >
-        <PreviewBox centered>
-          <div className="flex flex-col gap-4">
-            <Checkbox
-              checked="unchecked"
-              label="Send me product updates"
-              subtitle="We'll send occasional emails about new features."
-            />
-            <Checkbox
-              checked="checked"
-              label="Enable notifications"
-              subtitle="Receive alerts for important events in real time."
-            />
-          </div>
-        </PreviewBox>
-      </SubSection>
-
-      <SubSection
-        id="otp-cb-disabled"
-        title="Disabled"
-        description="Disabled unchecked: bg-noninteractive fill + border. Disabled filled: border-noninteractive fill (muted box, icon still visible)."
-      >
-        <PreviewBox centered>
-          <div className="flex flex-col gap-4">
-            {CHECKED_STATES.map(v => (
-              <Checkbox key={v} checked={v} label={v} forceState="disabled" />
-            ))}
-          </div>
-        </PreviewBox>
-      </SubSection>
-    </>
-  );
-}
-
-// ── Checkbox documentation page ───────────────────────────────────────────────
-// Source: Figma node 377:757, file uo2jhkx6oBwYpiFJxWnLJf.
-// Token mapping:
-// --neutrals/bg-active   → --color-neutrals-bg-active  (#f0f0f3) — page canvas
-// --neutrals/bg-canvas   → --color-neutrals-bg-canvas  (white)   — cards
-// --neutrals/border      → --color-neutrals-border      (#cdced6) — example box border
-// --neutrals/bg-hover    → --color-neutrals-bg-hover             — settings row bg
-// --colors/text/text-primary-(900) (#181d27) → --color-neutrals-content (nearest semantic token)
-
-const CB_DOC_SETTINGS = [
-  { Icon: ChevronDown,   label: 'Variant',       options: 'Checked, Unchecked, Indeterminate' },
-  { Icon: ChevronDown,   label: 'State',         options: 'Default, Hover, Pressed, Disabled' },
-  { Icon: Toggle01Right, label: 'Label',         options: 'True, False'                       },
-  { Icon: Type01,        label: 'Label text'                                                  },
-  { Icon: Toggle01Right, label: 'Subtitle',      options: 'True, False'                       },
-  { Icon: Type01,        label: 'Subtitle text'                                               },
-];
-
-const CB_DOC_VARIANTS: CheckedState[] = ['unchecked', 'checked', 'indeterminate'];
-
-const CB_DOC_STATES: Array<{ label: string; forceState?: CheckboxForceState }> = [
-  { label: 'Default'                             },
-  { label: 'Hover',    forceState: 'hover'    },
-  { label: 'Pressed',  forceState: 'pressed'  },
-  { label: 'Disabled', forceState: 'disabled' },
-];
-
-const CB_CYCLE_ORDER: CheckedState[] = ['unchecked', 'checked', 'indeterminate'];
-
-function CheckboxDocSection() {
-  const [cellStates, setCellStates] = useState<Record<string, CheckedState>>(() => {
-    const init: Record<string, CheckedState> = {};
-    for (let row = 0; row < CB_DOC_STATES.length; row++) {
-      for (let col = 0; col < CB_DOC_VARIANTS.length; col++) {
-        init[`${row}-${col}`] = CB_DOC_VARIANTS[col];
-      }
-    }
-    return init;
-  });
-
-  function cycleCell(row: number, col: number) {
-    setCellStates(prev => {
-      const key = `${row}-${col}`;
-      const next = CB_CYCLE_ORDER[(CB_CYCLE_ORDER.indexOf(prev[key]) + 1) % 3];
-      return { ...prev, [key]: next };
-    });
-  }
-
-  return (
-    <div className="p-8 flex flex-col gap-[60px]">
-
-      {/* Header card */}
-      <div className="bg-[var(--color-neutrals-bg-canvas)] rounded-[20px] px-12 pt-12 pb-16">
-        <h1 className="text-[60px] font-semibold leading-none tracking-tight text-[var(--color-neutrals-content)]">
-          Checkbox
-        </h1>
-      </div>
-
-      {/* Content card */}
-      <div className="bg-[var(--color-neutrals-bg-canvas)] rounded-[20px] px-12 pt-12 pb-16 flex flex-col gap-8">
-
-        <h2 className="text-[40px] font-semibold leading-none tracking-tight text-[var(--color-neutrals-content)]">
-          Checkbox
-        </h2>
-
-        <h3 className="text-[32px] font-semibold leading-none tracking-tight text-[var(--color-neutrals-content)]">
-          Properties
-        </h3>
-
-        {/* Example box: decorative settings panel + interactive checkbox grid */}
-        <div className="border border-[var(--color-neutrals-border)] rounded-[12px] p-10 flex gap-6">
-
-          {/* Settings panel — decorative, fixed 369 px */}
-          <div className="w-[369px] shrink-0 flex flex-col gap-2">
-            {CB_DOC_SETTINGS.map(row => (
-              <div
-                key={row.label}
-                className="bg-[var(--color-neutrals-bg-hover)] rounded-[8px] px-4 py-3 flex items-center gap-3"
-              >
-                <row.Icon className="size-5 shrink-0 text-[var(--color-neutrals-content-subdued)]" />
-                <span className="text-sm text-[var(--color-neutrals-content)]">
-                  {row.options ? (
-                    <>
-                      <span className="font-medium">{row.label}</span>
-                      <span className="text-[var(--color-neutrals-content-subdued)]"> • {row.options}</span>
-                    </>
-                  ) : (
-                    <span className="font-medium">{row.label}</span>
-                  )}
-                </span>
-              </div>
-            ))}
-          </div>
-
-          {/* Interactive checkbox grid: 3 variants × 4 states */}
-          <div className="flex-1 flex flex-col gap-4">
-
-            {/* Column headers */}
-            <div className="grid grid-cols-[4rem_repeat(3,1fr)] items-center min-h-6">
-              <div />
-              {CB_DOC_VARIANTS.map(v => (
-                <div key={v} className="flex justify-center">
-                  <span className="text-xs font-medium text-[var(--color-neutrals-content-subdued)] capitalize">{v}</span>
-                </div>
-              ))}
-            </div>
-
-            {/* State rows: default / hover / pressed / disabled */}
-            {CB_DOC_STATES.map((state, row) => (
-              <div
-                key={state.label}
-                className="grid grid-cols-[4rem_repeat(3,1fr)] items-start"
-              >
-                <span className="text-xs font-medium text-[var(--color-neutrals-content-subdued)] pt-0.5">
-                  {state.label}
-                </span>
-                {CB_DOC_VARIANTS.map((_, col) => (
-                  <div key={col} className="flex justify-center">
-                    <Checkbox
-                      checked={cellStates[`${row}-${col}`]}
-                      forceState={state.forceState}
-                      label="Label"
-                      subtitle="Subtitle text"
-                      onChange={
-                        state.forceState !== 'disabled'
-                          ? () => cycleCell(row, col)
-                          : undefined
-                      }
-                    />
-                  </div>
-                ))}
-              </div>
-            ))}
-
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
 // ── Content router ────────────────────────────────────────────────────────────
 
 function SectionContent({ id }: { id: SectionId }) {
@@ -973,7 +741,6 @@ function SectionContent({ id }: { id: SectionId }) {
     case 'avatar':            return <AvatarSection />;
     case 'badge':             return <BadgeSection />;
     case 'button':            return <ButtonSection />;
-    case 'checkbox':          return <CheckboxDocSection />;
     case 'breadcrumbs':       return <BreadcrumbsSection />;
     case 'loading-indicator': return <LoadingSection />;
   }
@@ -1074,28 +841,14 @@ export default function DsDevPage() {
         {/* ── Main content ──────────────────────────────────────────────── */}
         <main
           ref={mainRef}
-          className={[
-            'flex-1 min-w-0 h-[calc(100vh-3.5rem)] overflow-y-auto',
-            activeId === 'checkbox'
-              ? 'bg-[var(--color-neutrals-bg-active)]'
-              : 'px-10 py-8',
-          ].join(' ')}
+          className="flex-1 min-w-0 h-[calc(100vh-3.5rem)] overflow-y-auto px-10 py-8"
         >
-          {activeId === 'checkbox' ? (
-            <>
-              <SectionContent id={activeId} />
-              <div className="px-8 pb-8 pt-6 border-t border-[var(--color-neutrals-border)]">
-                {prevNextNav}
-              </div>
-            </>
-          ) : (
-            <div className="max-w-3xl">
-              <SectionContent id={activeId} />
-              <div className="mt-16 pt-6 border-t border-[var(--color-neutrals-border)]">
-                {prevNextNav}
-              </div>
+          <div className="max-w-3xl">
+            <SectionContent id={activeId} />
+            <div className="mt-16 pt-6 border-t border-[var(--color-neutrals-border)]">
+              {prevNextNav}
             </div>
-          )}
+          </div>
         </main>
 
 
