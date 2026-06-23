@@ -68,9 +68,9 @@ function Hero() {
             margin: '0 0 var(--spacing-5)',
           }}
         >
-          Build interfaces
+          The foundation for
           <br />
-          <span style={{ color: 'var(--color-primary-content)' }}>without friction</span>
+          <span style={{ color: 'var(--color-primary-content)' }}>Design System</span>
         </h1>
 
         {/* Subtitle */}
