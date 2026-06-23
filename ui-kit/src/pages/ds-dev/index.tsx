@@ -56,9 +56,9 @@ const NAV_SECTIONS = [
   },
 ] as const;
 
-type SectionId = 'colors-tokens' | 'typography' | 'icons' | 'accordion' | 'avatar' | 'badge' | 'button' | 'breadcrumbs' | 'loading-indicator';
+type SectionId = (typeof NAV_SECTIONS)[number]['items'][number]['id'];
 
-const ALL_ITEMS = NAV_SECTIONS.flatMap(s => s.items) as { id: SectionId; label: string }[];
+const ALL_ITEMS = NAV_SECTIONS.flatMap(s => [...s.items]);
 
 
 const TOKEN_CATEGORIES = ['neutrals', 'primary', 'critical', 'warning', 'success'] as const;
