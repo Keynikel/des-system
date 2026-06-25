@@ -1,0 +1,6 @@
+/* Checked+disabled: muted circle fill.
+   Compound :checked:disabled rule — peer-checked + peer-disabled cannot be stacked
+   in Tailwind to target the same sibling element. */
+.rb-input:checked:disabled ~ .rb-circle {
+  background-color: var(--color-neutrals-border-noninteractive);
+}

@@ -1,0 +1,67 @@
+/*
+ * ButtonGroup border-collapsing styles.
+ * Figma: uo2jhkx6oBwYpiFJxWnLJf node 387:696
+ * (page is empty — component is not yet built in Figma;
+ *  design follows standard DS button group conventions)
+ *
+ * NOTE ON LAYER CHOICE: These rules are written outside @layer so they are
+ * treated as "unlayered" and therefore outrank any @layer (including Tailwind's
+ * @layer utilities). This is necessary to override Button's `rounded-[...]`
+ * utility classes without resorting to !important.
+ *
+ * Token mapping:
+ *   border-color  → --color-neutrals-border  (#cdced6)   ✓
+ *   border-radius → --radius-md (8 px)                   ✓
+ *   gap (row)     → --spacing-2 (8 px)                   ✓
+ */
+
+/* ── Base group layout ───────────────────────────────────────────────────────── */
+.btn-group {
+  display: inline-flex;
+  align-items: stretch;
+  /* gap must be 0 so adjacent borders share a single pixel */
+  gap: 0;
+}
+
+/* ── Horizontal (default): collapse left border + inner radii ─────────────────
+   The first child keeps its full border; every subsequent child removes the
+   left border (so only one 1 px pixel sits between them) and its inner corners. */
+.btn-group:not([data-orientation="vertical"]) > *:not(:first-child) {
+  border-left-width: 0;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.btn-group:not([data-orientation="vertical"]) > *:not(:last-child) {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+/* ── Vertical: collapse top border + inner radii ──────────────────────────────*/
+.btn-group[data-orientation="vertical"] {
+  flex-direction: column;
+  align-items: stretch;
+}
+.btn-group[data-orientation="vertical"] > *:not(:first-child) {
+  border-top-width: 0;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+.btn-group[data-orientation="vertical"] > *:not(:last-child) {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+/* ── Focused / hovered child: lift above siblings so focus ring isn't clipped ─*/
+.btn-group > *:focus-within,
+.btn-group > *:hover {
+  position: relative;
+  z-index: 1;
+}
+
+/* ── Outer row wrapper (asRow): gap between sub-groups ───────────────────────── */
+.btn-group-row {
+  display: inline-flex;
+  align-items: center;
+  /* --spacing-2 = 8 px; TOKEN MISSING: no semantic "group-gap" token, using spacing-2 */
+  gap: var(--spacing-2);
+}

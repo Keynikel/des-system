@@ -1,0 +1,23 @@
+/*
+ * Checkbox compound-state overrides.
+ * Source of truth: Figma uo2jhkx6oBwYpiFJxWnLJf — node 377:756.
+ *
+ * These rules are intentionally unlayered — they sit above Tailwind's @layer utilities
+ * and override `peer-checked:bg-*` without !important.
+ *
+ * TOKEN MISSING (noted for PR description):
+ *   ring-width 3px — no semantic DS token; approximated from Figma hover asset geometry
+ *   (image at absolute inset -50% on a 16px box → 8px outer ring; visual ring ≈ 3px spread).
+ */
+
+/* disabled + checked → gray fill (Figma node 381:861: bg = --color-neutrals-border-noninteractive) */
+.cb-input:checked:disabled ~ .cb-box {
+  background-color: var(--color-neutrals-border-noninteractive);
+  border-color: transparent;
+}
+
+/* disabled + indeterminate → same gray fill */
+[data-indeterminate="true"] .cb-input:disabled ~ .cb-box {
+  background-color: var(--color-neutrals-border-noninteractive);
+  border-color: transparent;
+}

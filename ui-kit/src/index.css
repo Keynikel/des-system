@@ -2,6 +2,10 @@
 @import "./tokens/colors.css";
 @import "./tokens/typography.css";
 @import "./tokens/spacing.css";
+@import "./styles/button-group.css";
+@import "./styles/checkbox.css";
+@import "./styles/radiobutton.css";
+@import "./styles/switch.css";
 
 @theme {
   /* ── Palette ── */

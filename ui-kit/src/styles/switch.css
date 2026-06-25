@@ -1,0 +1,16 @@
+/*
+ * Switch compound-state overrides.
+ * Source of truth: Figma uo2jhkx6oBwYpiFJxWnLJf — node 440:13.
+ *
+ * Intentionally unlayered — sits above Tailwind's @layer utilities.
+ *
+ * TOKEN MISSING:
+ *   cornerRadius 9999 — no radius/full variable in Primitives collection
+ *   disabled opacity 0.4 — no disabled-opacity token in DS
+ */
+
+/* disabled + checked → noninteractive fill (not primary) */
+.sw-input:checked:disabled ~ .sw-track {
+  background-color: var(--color-neutrals-bg-noninteractive);
+  border-color: var(--color-neutrals-border-noninteractive);
+}

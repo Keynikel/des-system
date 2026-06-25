@@ -26,8 +26,10 @@
 // --spacing/spacing-40 (40px)  → h-10 / size-10  (Tailwind)
 // --radius/radius-8  (8px)     → --radius-md     ✓ (DS radius-md = 8px)
 
+import { useContext } from 'react';
 import type { ButtonHTMLAttributes, ReactNode } from 'react';
 import { LoadingIndicator } from '../LoadingIndicator';
+import { ButtonGroupContext } from '../ui/ButtonGroup/ButtonGroupContext';
 
 export type ButtonHierarchy  = 'primary' | 'secondary' | 'text' | 'text-primary';
 export type ButtonSize       = 'sm' | 'md';
@@ -172,7 +174,7 @@ const ICON_SLOT = 'shrink-0 opacity-90 overflow-clip size-4 relative flex items-
 
 export function Button({
   hierarchy    = 'primary',
-  size         = 'md',
+  size: sizeProp,
   destructive  = false,
   loading      = false,
   iconLeading,
@@ -185,6 +187,9 @@ export function Button({
   disabled,
   ...rest
 }: ButtonProps) {
+  const { size: contextSize } = useContext(ButtonGroupContext);
+  const size = sizeProp ?? contextSize;
+
   if (process.env.NODE_ENV !== 'production' && iconOnly && !iconLeading && !iconTrailing) {
     console.warn('Button (iconOnly=true): provide iconLeading or iconTrailing.');
   }

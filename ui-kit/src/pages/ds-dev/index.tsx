@@ -4,7 +4,6 @@ import { textStyles } from '../../tokens/typography';
 import { Icon } from '../../components/Icon';
 import type { IconName } from '../../components/Icon';
 import { AccordionItem, AccordionGroup } from '../../components/Accordion';
-import { SettingsPayment } from '../../components/SettingsPayment';
 import { Avatar } from '../../components/Avatar';
 import type { AvatarSize, AvatarType } from '../../components/Avatar';
 import { Badge } from '../../components/Badge';
@@ -16,10 +15,25 @@ import type { LoadingColor, LoadingSize } from '../../components/LoadingIndicato
 import { Button } from '../../components/Button';
 import type { ButtonHierarchy } from '../../components/Button';
 import { Skeleton } from '../../components/ui/Skeleton/Skeleton';
+import { ButtonGroup } from '../../components/ui/ButtonGroup/ButtonGroup';
+import { Checkbox } from '../../components/ui/Checkbox/Checkbox';
+import { RadioButton } from '../../components/ui/RadioButton/RadioButton';
+import { Switch } from '../../components/ui/Switch/Switch';
+import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '../../components/ui/Card/Card';
+import { Input, Textarea } from '../../components/ui/Input/Input';
+import { Tag } from '../../components/ui/Tag/Tag';
+import type { TagColor } from '../../components/ui/Tag/Tag';
+import { Tag01 } from '../../icons/components/finance/Tag01';
+import { SearchMd } from '../../icons/components/general/SearchMd';
+import { InfoCircle } from '../../icons/components/general/InfoCircle';
+import { ChevronDown } from '../../icons/components/arrows/ChevronDown';
 import { Home01 } from '../../icons/components/general/Home01';
 import { Plus } from '../../icons/components/general/Plus';
 import { Edit01 } from '../../icons/components/general/Edit01';
 import { Trash01 } from '../../icons/components/general/Trash01';
+import { DotsHorizontal } from '../../icons/components/general/DotsHorizontal';
+import { ArrowLeft } from '../../icons/components/arrows/ArrowLeft';
+import { ArrowRight } from '../../icons/components/arrows/ArrowRight';
 import * as Icons from '../../icons/components/index';
 
 
@@ -51,7 +65,14 @@ const NAV_SECTIONS = [
       { id: 'avatar',      label: 'Avatar'      },
       { id: 'badge',       label: 'Badge'       },
       { id: 'button',            label: 'Button'            },
+      { id: 'button-group',      label: 'Button Group'      },
       { id: 'breadcrumbs',       label: 'Breadcrumbs'       },
+      { id: 'card',              label: 'Card'              },
+      { id: 'checkbox',          label: 'Checkbox'          },
+      { id: 'input',             label: 'Input'             },
+      { id: 'tag',               label: 'Tag'               },
+      { id: 'radio-button',      label: 'Radio Button'      },
+      { id: 'switch',            label: 'Switch'             },
       { id: 'loading-indicator', label: 'Loading Indicator'  },
       { id: 'skeleton',          label: 'Skeleton'           },
     ],
@@ -251,7 +272,6 @@ function IconsSection() {
 
 // ── Section: Accordion ────────────────────────────────────────────────────────
 
-const bodyText = 'text-sm font-normal leading-[var(--line-height-body)] tracking-[var(--letter-spacing-body)] text-[var(--color-neutrals-content)]';
 
 function AccordionSection() {
   return (
@@ -264,24 +284,40 @@ function AccordionSection() {
       <SubSection
         id="otp-acc-wide"
         title="Wide group"
-        description="Single-open group with rich content. First item expanded by default."
+        description="Single-open group with form fields. First item expanded by default."
       >
         <PreviewBox>
           <AccordionGroup>
-            <AccordionItem title="How does billing work?" defaultExpanded>
-              <SettingsPayment />
+            <AccordionItem title="Personal information" defaultExpanded>
+              <div className="flex flex-col gap-4">
+                <Input label="Full name" placeholder="Jane Smith" />
+                <Input
+                  label="Email address"
+                  type="email"
+                  placeholder="jane@example.com"
+                  helperText="Used for account notifications."
+                />
+              </div>
             </AccordionItem>
-            <AccordionItem title="Is my data secure?">
-              <p className={bodyText}>
-                We use AES-256 encryption at rest and TLS 1.3 in transit. Data is stored in
-                SOC 2 Type II certified infrastructure with role-based access controls and 2FA.
-              </p>
+            <AccordionItem title="Account details">
+              <div className="flex flex-col gap-4">
+                <Input
+                  label="Username"
+                  placeholder="janesmith"
+                  helperText="Must be 3–20 characters, letters and numbers only."
+                />
+                <Input label="Password" type="password" placeholder="••••••••" />
+              </div>
             </AccordionItem>
-            <AccordionItem title="What integrations do you support?">
-              <p className={bodyText}>
-                We integrate with Slack, GitHub, Jira, Salesforce, and 50+ tools via native
-                connectors, REST API, and webhooks.
-              </p>
+            <AccordionItem title="Additional notes">
+              <div className="flex flex-col gap-4">
+                <Input label="Website" placeholder="yoursite.com" />
+                <Input
+                  label="Message"
+                  placeholder="Anything else we should know?"
+                  helperText="Optional."
+                />
+              </div>
             </AccordionItem>
           </AccordionGroup>
         </PreviewBox>
@@ -289,27 +325,41 @@ function AccordionSection() {
 
       <SubSection
         id="otp-acc-faq"
-        title="FAQ group"
-        description="600 px wide single-open group with text content."
+        title="600 px wide group"
+        description="Same three panels constrained to 600 px."
       >
         <PreviewBox>
           <AccordionGroup className="max-w-[600px]">
-            <AccordionItem title="How does billing work?" defaultExpanded>
-              <p className={bodyText}>
-                Monthly and annual plans available. Billing is charged at the start of each cycle;
-                cancel anytime. All plans include backups, 24/7 support, and unlimited team members.
-              </p>
+            <AccordionItem title="Personal information" defaultExpanded>
+              <div className="flex flex-col gap-4">
+                <Input label="Full name" placeholder="Jane Smith" />
+                <Input
+                  label="Email address"
+                  type="email"
+                  placeholder="jane@example.com"
+                  helperText="Used for account notifications."
+                />
+              </div>
             </AccordionItem>
-            <AccordionItem title="Is my data secure?">
-              <p className={bodyText}>
-                AES-256 at rest, TLS 1.3 in transit, stored in SOC 2 Type II certified infrastructure
-                with role-based access and 2FA.
-              </p>
+            <AccordionItem title="Account details">
+              <div className="flex flex-col gap-4">
+                <Input
+                  label="Username"
+                  placeholder="janesmith"
+                  helperText="Must be 3–20 characters, letters and numbers only."
+                />
+                <Input label="Password" type="password" placeholder="••••••••" />
+              </div>
             </AccordionItem>
-            <AccordionItem title="What integrations do you support?">
-              <p className={bodyText}>
-                Slack, GitHub, Jira, Salesforce, and 50+ more via native connectors, REST API, and webhooks.
-              </p>
+            <AccordionItem title="Additional notes">
+              <div className="flex flex-col gap-4">
+                <Input label="Website" placeholder="yoursite.com" />
+                <Input
+                  label="Message"
+                  placeholder="Anything else we should know?"
+                  helperText="Optional."
+                />
+              </div>
             </AccordionItem>
           </AccordionGroup>
         </PreviewBox>
@@ -322,14 +372,36 @@ function AccordionSection() {
       >
         <PreviewBox>
           <AccordionGroup multiple className="max-w-[600px]">
-            <AccordionItem title="How does billing work?" defaultExpanded>
-              <p className={bodyText}>Monthly and annual plans. Cancel anytime.</p>
+            <AccordionItem title="Personal information" defaultExpanded>
+              <div className="flex flex-col gap-4">
+                <Input label="Full name" placeholder="Jane Smith" />
+                <Input
+                  label="Email address"
+                  type="email"
+                  placeholder="jane@example.com"
+                  helperText="Used for account notifications."
+                />
+              </div>
             </AccordionItem>
-            <AccordionItem title="Is my data secure?" defaultExpanded>
-              <p className={bodyText}>AES-256 encryption, SOC 2 Type II certified infrastructure.</p>
+            <AccordionItem title="Account details" defaultExpanded>
+              <div className="flex flex-col gap-4">
+                <Input
+                  label="Username"
+                  placeholder="janesmith"
+                  helperText="Must be 3–20 characters, letters and numbers only."
+                />
+                <Input label="Password" type="password" placeholder="••••••••" />
+              </div>
             </AccordionItem>
-            <AccordionItem title="What integrations do you support?">
-              <p className={bodyText}>Slack, GitHub, Jira, and 50+ more.</p>
+            <AccordionItem title="Additional notes">
+              <div className="flex flex-col gap-4">
+                <Input label="Website" placeholder="yoursite.com" />
+                <Input
+                  label="Message"
+                  placeholder="Anything else we should know?"
+                  helperText="Optional."
+                />
+              </div>
             </AccordionItem>
           </AccordionGroup>
         </PreviewBox>
@@ -732,6 +804,343 @@ function ButtonSection() {
   );
 }
 
+// ── Section: Button Group ─────────────────────────────────────────────────────
+// Source of truth: Figma uo2jhkx6oBwYpiFJxWnLJf node 387:696
+// (page was empty at inspection — component follows DS border-collapsing conventions)
+
+function ButtonGroupSection() {
+  return (
+    <>
+      <PageHeader
+        title="Button Group"
+        description="Joins two or more buttons into a single connected control. Adjacent borders collapse to a single 1 px line; only the outer corners keep their radius. Supports horizontal (default) and vertical orientations, and can be nested inside an asRow wrapper to space multiple sub-groups."
+      />
+
+      <SubSection
+        id="otp-bg-horizontal"
+        title="Horizontal"
+        description="Default orientation. Shared 1 px border between items; outer corners retain --radius-md."
+      >
+        <PreviewBox centered>
+          <ButtonGroup>
+            <Button hierarchy="secondary">Archive</Button>
+            <Button hierarchy="secondary">Report</Button>
+          </ButtonGroup>
+        </PreviewBox>
+      </SubSection>
+
+      <SubSection
+        id="otp-bg-icon"
+        title="With icon-only button"
+        description={<>Common "action + overflow" pattern — a text button paired with an icon-only trigger. Always pass <InlineCode>aria-label</InlineCode> on icon-only buttons.</>}
+      >
+        <PreviewBox centered>
+          <ButtonGroup>
+            <Button hierarchy="secondary">Snooze</Button>
+            <Button hierarchy="secondary" iconOnly iconLeading={<DotsHorizontal />} aria-label="More options" />
+          </ButtonGroup>
+        </PreviewBox>
+      </SubSection>
+
+      <SubSection
+        id="otp-bg-vertical"
+        title="Vertical"
+        description={<>Set <InlineCode>orientation="vertical"</InlineCode> to stack buttons. Top/bottom borders collapse; outer corners are retained.</>}
+      >
+        <PreviewBox centered>
+          <ButtonGroup orientation="vertical">
+            <Button hierarchy="secondary">First</Button>
+            <Button hierarchy="secondary">Second</Button>
+            <Button hierarchy="secondary">Third</Button>
+          </ButtonGroup>
+        </PreviewBox>
+      </SubSection>
+
+      <SubSection
+        id="otp-bg-nested"
+        title="Nested groups (asRow)"
+        description={<>Wrap multiple sub-groups in <InlineCode>{'<ButtonGroup asRow>'}</InlineCode> to space them with --spacing-2 (8 px) while each sub-group still collapses its own borders.</>}
+      >
+        <PreviewBox centered>
+          <ButtonGroup asRow>
+            <ButtonGroup>
+              <Button hierarchy="secondary" iconOnly iconLeading={<ArrowLeft />} aria-label="Go back" />
+              <Button hierarchy="secondary" iconOnly iconLeading={<ArrowRight />} aria-label="Go forward" />
+            </ButtonGroup>
+            <ButtonGroup>
+              <Button hierarchy="secondary">Archive</Button>
+              <Button hierarchy="secondary">Report</Button>
+            </ButtonGroup>
+            <ButtonGroup>
+              <Button hierarchy="secondary">Snooze</Button>
+              <Button hierarchy="secondary" iconOnly iconLeading={<DotsHorizontal />} aria-label="More options" />
+            </ButtonGroup>
+          </ButtonGroup>
+        </PreviewBox>
+      </SubSection>
+
+      <SubSection
+        id="otp-bg-sizes"
+        title="Sizes"
+        description={<>The <InlineCode>size</InlineCode> prop is propagated via context to all child Buttons — no need to set it on each Button individually.</>}
+      >
+        <PreviewBox>
+          <div className="flex flex-col gap-5 items-start">
+            {(['sm', 'md'] as const).map(size => (
+              <div key={size} className="flex items-center gap-4">
+                <span className="w-6 text-xs font-mono text-[var(--color-neutrals-content-noninteractive)]">{size}</span>
+                <ButtonGroup size={size}>
+                  <Button hierarchy="secondary">Archive</Button>
+                  <Button hierarchy="secondary">Report</Button>
+                  <Button hierarchy="secondary" iconOnly iconLeading={<DotsHorizontal />} aria-label="More" />
+                </ButtonGroup>
+              </div>
+            ))}
+          </div>
+        </PreviewBox>
+      </SubSection>
+    </>
+  );
+}
+
+// ── Section: Card ─────────────────────────────────────────────────────────────
+// Source of truth: Figma uo2jhkx6oBwYpiFJxWnLJf node 413:1320
+
+function CardSection() {
+  return (
+    <>
+      <PageHeader
+        title="Card"
+        description="A composable surface container. Mix and match CardHeader, CardTitle, CardDescription, CardContent, and CardFooter — include only what the pattern needs. No slots are required."
+      />
+
+      {/* ── Composition ─────────────────────────────────────────────────── */}
+      <SubSection
+        id="otp-card-composition"
+        title="Composition variants"
+        description="Include only the zones the pattern needs. All combinations are valid."
+      >
+        <PreviewBox>
+          <div className="grid grid-cols-2 gap-4">
+            {/* Full */}
+            <div>
+              <p className="mb-2 text-xs font-mono text-[var(--color-neutrals-content-noninteractive)]">Header + Content + Footer</p>
+              <Card>
+                <CardHeader>
+                  <CardTitle>Title</CardTitle>
+                  <CardDescription>Description text</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-[length:var(--font-size-body)] leading-[var(--line-height-body)] text-[var(--color-neutrals-content-subdued)] py-2">
+                    Body content
+                  </p>
+                </CardContent>
+                <CardFooter>
+                  <span className="text-[length:var(--font-size-caption)] text-[var(--color-neutrals-content-noninteractive)]">Label</span>
+                  <Button hierarchy="primary" size="sm">Action</Button>
+                </CardFooter>
+              </Card>
+            </div>
+
+            {/* No footer */}
+            <div>
+              <p className="mb-2 text-xs font-mono text-[var(--color-neutrals-content-noninteractive)]">Header + Content</p>
+              <Card>
+                <CardHeader>
+                  <CardTitle>Title</CardTitle>
+                  <CardDescription>Description text</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <div className="flex flex-col gap-2 py-2">
+                    <Checkbox label="Option A" defaultChecked />
+                    <Checkbox label="Option B" />
+                    <Checkbox label="Option C" />
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+
+            {/* Header only */}
+            <div>
+              <p className="mb-2 text-xs font-mono text-[var(--color-neutrals-content-noninteractive)]">Header only</p>
+              <Card>
+                <CardHeader>
+                  <CardTitle>Title</CardTitle>
+                  <CardDescription>Description text</CardDescription>
+                </CardHeader>
+              </Card>
+            </div>
+
+            {/* No description */}
+            <div>
+              <p className="mb-2 text-xs font-mono text-[var(--color-neutrals-content-noninteractive)]">No description</p>
+              <Card>
+                <CardHeader>
+                  <CardTitle>Title only</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-[length:var(--font-size-body)] leading-[var(--line-height-body)] text-[var(--color-neutrals-content-subdued)] py-2">
+                    Body content
+                  </p>
+                </CardContent>
+                <CardFooter>
+                  <Button hierarchy="secondary" size="sm">Action</Button>
+                </CardFooter>
+              </Card>
+            </div>
+          </div>
+        </PreviewBox>
+      </SubSection>
+
+      {/* ── Examples ─────────────────────────────────────────────────────── */}
+      <SubSection
+        id="otp-card-examples"
+        title="Examples"
+        description="Common patterns composed from Card sub-components and other DS primitives."
+      >
+        <PreviewBox>
+          <div className="flex gap-6 items-start">
+
+            {/* Card 1 — image + header + footer */}
+            <Card className="w-[360px] shrink-0">
+              <div className="w-full aspect-[2/1] bg-[var(--color-neutrals-bg-muted-active)]" />
+              <CardHeader>
+                <CardTitle>Design systems meetup</CardTitle>
+                <CardDescription>
+                  A practical talk on component APIs, accessibility, and shipping faster.
+                </CardDescription>
+              </CardHeader>
+              <CardFooter className="border-t border-[var(--color-neutrals-border)] ![padding-top:var(--spacing-md)]">
+                <Button hierarchy="primary" size="md" className="w-full">View details</Button>
+              </CardFooter>
+            </Card>
+
+            {/* Card 2 — header + content only */}
+            <Card className="grow">
+              <CardHeader>
+                <CardTitle>Small Card</CardTitle>
+              </CardHeader>
+              <CardContent className="py-5">
+                <p className="text-[length:var(--font-size-body)] leading-[var(--line-height-body)] tracking-[var(--letter-spacing-body)] text-[var(--color-neutrals-content)]">
+                  The card component supports a size prop that can be set to &quot;sm&quot; for a more compact appearance.
+                </p>
+              </CardContent>
+            </Card>
+
+          </div>
+        </PreviewBox>
+      </SubSection>
+    </>
+  );
+}
+
+// ── Section: Checkbox ─────────────────────────────────────────────────────────
+// Source of truth: Figma uo2jhkx6oBwYpiFJxWnLJf node 377:756.
+
+function CheckboxSection() {
+  return (
+    <>
+      <PageHeader
+        title="Checkbox"
+        description="A binary (or indeterminate) selection control. Uses a native sr-only input for full keyboard and screen-reader support with a custom visual box driven by peer-checked, peer-focus-visible, and peer-disabled CSS modifiers."
+      />
+
+      <SubSection
+        id="otp-cb-variants"
+        title="Variants"
+        description="Three visual states: unchecked, checked, and indeterminate. Indeterminate takes visual priority over checked."
+      >
+        <PreviewBox centered>
+          <div className="flex items-center gap-8">
+            <div className="flex flex-col items-center gap-2">
+              <Checkbox />
+              <span className="text-xs font-mono text-[var(--color-neutrals-content-noninteractive)]">unchecked</span>
+            </div>
+            <div className="flex flex-col items-center gap-2">
+              <Checkbox checked onChange={() => {}} />
+              <span className="text-xs font-mono text-[var(--color-neutrals-content-noninteractive)]">checked</span>
+            </div>
+            <div className="flex flex-col items-center gap-2">
+              <Checkbox indeterminate />
+              <span className="text-xs font-mono text-[var(--color-neutrals-content-noninteractive)]">indeterminate</span>
+            </div>
+          </div>
+        </PreviewBox>
+      </SubSection>
+
+      <SubSection
+        id="otp-cb-label"
+        title="With label"
+        description={<>Pass any <InlineCode>ReactNode</InlineCode> to <InlineCode>label</InlineCode>. The label wraps the input so clicking anywhere on the row toggles the checkbox.</>}
+      >
+        <PreviewBox centered>
+          <div className="flex flex-col gap-3">
+            <Checkbox label="Accept terms and conditions" />
+            <Checkbox label="Subscribe to newsletter" defaultChecked />
+            <Checkbox label="Select all" indeterminate />
+          </div>
+        </PreviewBox>
+      </SubSection>
+
+      <SubSection
+        id="otp-cb-states"
+        title="States"
+        description={<>Use <InlineCode>forceState</InlineCode> to pin a visual state for QA without real interaction. All three variants × four states are shown below.</>}
+      >
+        <PreviewBox>
+          <div
+            className="inline-grid gap-x-10 gap-y-5 items-center"
+            style={{ gridTemplateColumns: '7rem repeat(3, 1fr)' }}
+          >
+            {/* Column headers */}
+            <div />
+            {(['unchecked', 'checked', 'indeterminate'] as const).map(v => (
+              <p key={v} className="text-xs font-mono text-[var(--color-neutrals-content-subdued)]">{v}</p>
+            ))}
+            {/* Rows */}
+            {([
+              { state: undefined,      label: 'default'       },
+              { state: 'hover',        label: 'hover'         },
+              { state: 'focus',        label: 'focus'         },
+              { state: 'disabled',     label: 'disabled'      },
+            ] as const).map(({ state, label: stateLabel }) => [
+              <p key={`lbl-${stateLabel}`} className="text-xs font-mono text-[var(--color-neutrals-content-noninteractive)]">
+                {stateLabel}
+              </p>,
+              <Checkbox key={`unchecked-${stateLabel}`}  forceState={state} />,
+              <Checkbox key={`checked-${stateLabel}`}    forceState={state} checked onChange={() => {}} />,
+              <Checkbox key={`indet-${stateLabel}`}      forceState={state} indeterminate />,
+            ])}
+          </div>
+        </PreviewBox>
+      </SubSection>
+
+      <SubSection
+        id="otp-cb-disabled"
+        title="Disabled"
+        description="Disabled checkboxes use the noninteractive background, border, and text tokens. The input is unfocusable and aria-disabled is set."
+      >
+        <PreviewBox centered>
+          <div className="flex items-center gap-8">
+            <div className="flex flex-col items-center gap-2">
+              <Checkbox disabled />
+              <span className="text-xs font-mono text-[var(--color-neutrals-content-noninteractive)]">unchecked</span>
+            </div>
+            <div className="flex flex-col items-center gap-2">
+              <Checkbox disabled checked onChange={() => {}} />
+              <span className="text-xs font-mono text-[var(--color-neutrals-content-noninteractive)]">checked</span>
+            </div>
+            <div className="flex flex-col items-center gap-2">
+              <Checkbox disabled indeterminate />
+              <span className="text-xs font-mono text-[var(--color-neutrals-content-noninteractive)]">indeterminate</span>
+            </div>
+          </div>
+        </PreviewBox>
+      </SubSection>
+    </>
+  );
+}
+
 // ── Section: Skeleton ─────────────────────────────────────────────────────────
 // Source of truth: Figma uo2jhkx6oBwYpiFJxWnLJf node 382:2542.
 
@@ -851,6 +1260,474 @@ function SkeletonSection() {
   );
 }
 
+// ── Section: Input ────────────────────────────────────────────────────────────
+// Source of truth: Figma uo2jhkx6oBwYpiFJxWnLJf node 417:11499 (Text field component set)
+
+function InputSection() {
+  return (
+    <>
+      <PageHeader
+        title="Input"
+        description="Form input primitives: text, textarea, date picker, and dropdown. All share the same token-bound styling and accessibility pattern."
+      />
+
+      {/* ── Text ──────────────────────────────────────────────────────────── */}
+      <SubSection
+        id="otp-input-text"
+        title="Text"
+        description="Single-line text field. Supports label, helper text, required/optional indicators, leading and trailing icon slots, and error state."
+      >
+        <PreviewBox>
+          <div className="flex flex-col gap-4 w-[320px]">
+            <Input
+              label="Conditions"
+              required
+              placeholder="Add conditions"
+              helperText="This is a hint text to help user"
+            />
+            <Input
+              label="Search"
+              placeholder="Search…"
+              leadingIcon={<SearchMd className="size-5" />}
+            />
+            <Input
+              label="Email address"
+              defaultValue="user@example.com"
+              trailingIcon={<InfoCircle className="size-4" />}
+            />
+            <Input
+              label="Password"
+              type="password"
+              placeholder="Enter password"
+              error="Password must be at least 8 characters."
+            />
+            <Input label="Disabled" placeholder="Cannot edit" disabled />
+          </div>
+        </PreviewBox>
+      </SubSection>
+
+      {/* ── Textarea ──────────────────────────────────────────────────────── */}
+      <SubSection
+        id="otp-input-textarea"
+        title="Textarea"
+        description="Multi-line text input. Same token binding as text; no icon slots. Vertically resizable by default."
+      >
+        <PreviewBox>
+          <div className="flex flex-col gap-4 w-[320px]">
+            <Textarea
+              label="Message"
+              required
+              placeholder="Write your message here…"
+              helperText="Up to 500 characters."
+            />
+            <Textarea
+              label="Notes"
+              optional
+              placeholder="Any additional notes"
+              rows={3}
+            />
+            <Textarea
+              label="Feedback"
+              placeholder="Enter feedback"
+              error="Feedback is required."
+            />
+            <Textarea
+              label="Read-only"
+              defaultValue="This field cannot be edited."
+              disabled
+            />
+          </div>
+        </PreviewBox>
+      </SubSection>
+
+      {/* ── Date picker ───────────────────────────────────────────────────── */}
+      <SubSection
+        id="otp-input-date"
+        title="Date picker"
+        description={<>Native <InlineCode>{'<input type="date">'}</InlineCode> using the same Input component. Browser-rendered date picker; appearance follows the OS/browser chrome.</>}
+      >
+        <PreviewBox>
+          <div className="flex flex-col gap-4 w-[320px]">
+            <Input
+              label="Start date"
+              type="date"
+              required
+            />
+            <Input
+              label="End date"
+              type="date"
+              optional
+              helperText="Leave blank for open-ended."
+            />
+            <Input
+              label="Deadline"
+              type="date"
+              error="Please select a valid date."
+            />
+            <Input
+              label="Locked date"
+              type="date"
+              defaultValue="2026-01-01"
+              disabled
+            />
+          </div>
+        </PreviewBox>
+      </SubSection>
+
+      {/* ── Dropdown ──────────────────────────────────────────────────────── */}
+      <SubSection
+        id="otp-input-dropdown"
+        title="Dropdown"
+        description={<>Native <InlineCode>{'<select>'}</InlineCode> styled to match the Input visual. A dedicated Dropdown component with search and multi-select is coming in a future release.</>}
+      >
+        <PreviewBox>
+          <div className="flex flex-col gap-4 w-[320px]">
+            {/* Reusable inline select wrapper matching Input styling */}
+            {([
+              { label: 'Country', required: true, helperText: undefined, error: undefined, disabled: false },
+              { label: 'Role',    required: false, helperText: 'Determines your access level.', error: undefined, disabled: false },
+              { label: 'Status',  required: false, helperText: undefined, error: 'Please select a status.', disabled: false },
+              { label: 'Type',    required: false, helperText: undefined, error: undefined, disabled: true },
+            ] as const).map(({ label, required, helperText, error, disabled }) => {
+              const isError = !!error;
+              const borderCls = disabled
+                ? 'border-[var(--color-neutrals-border-noninteractive)]'
+                : isError
+                  ? 'border-[var(--color-critical-border)]'
+                  : 'border-[var(--color-neutrals-border)] hover:border-[var(--color-neutrals-border-hover)] focus-within:border-[var(--color-primary-border)]';
+              return (
+                <div key={label} className="flex flex-col gap-1">
+                  <div className="flex gap-0.5 items-start">
+                    <label className="text-[length:var(--font-size-body)] leading-[var(--line-height-body)] text-[var(--color-neutrals-content)]">
+                      {label}
+                    </label>
+                    {required && (
+                      <span aria-hidden="true" className="text-[var(--color-critical-content)] text-[length:var(--font-size-body)] leading-[var(--line-height-body)] font-medium">*</span>
+                    )}
+                  </div>
+                  <div className={[
+                    'flex items-center gap-2 px-3 py-2 border border-solid rounded-[var(--radius-sm)] transition-colors',
+                    disabled ? 'bg-[var(--color-neutrals-bg-noninteractive)]' : 'bg-[var(--color-neutrals-bg-canvas)]',
+                    borderCls,
+                  ].join(' ')}>
+                    <select
+                      disabled={disabled}
+                      aria-invalid={isError || undefined}
+                      className={[
+                        'flex-1 bg-transparent outline-none border-none appearance-none',
+                        'text-[length:var(--font-size-body)] leading-[var(--line-height-body)] font-normal',
+                        disabled
+                          ? 'cursor-not-allowed text-[var(--color-neutrals-content-noninteractive)]'
+                          : 'text-[var(--color-neutrals-content)]',
+                      ].join(' ')}
+                    >
+                      <option value="">Select an option</option>
+                      <option value="a">Option A</option>
+                      <option value="b">Option B</option>
+                      <option value="c">Option C</option>
+                    </select>
+                    <ChevronDown className="size-4 shrink-0 text-[var(--color-neutrals-content-noninteractive)] pointer-events-none" />
+                  </div>
+                  {error ? (
+                    <p role="alert" className="text-[length:var(--font-size-caption)] leading-[var(--line-height-caption)] font-normal text-[var(--color-critical-content)]">{error}</p>
+                  ) : helperText ? (
+                    <p className="text-[length:var(--font-size-caption)] leading-[var(--line-height-caption)] font-normal text-[var(--color-neutrals-content-subdued)]">{helperText}</p>
+                  ) : null}
+                </div>
+              );
+            })}
+          </div>
+        </PreviewBox>
+      </SubSection>
+    </>
+  );
+}
+
+
+// ── Section: Tag ──────────────────────────────────────────────────────────────
+// Source of truth: Figma uo2jhkx6oBwYpiFJxWnLJf node 417:5907 (Chip component set)
+
+function TagSection() {
+  const colors: TagColor[] = ['default', 'primary', 'error', 'warning', 'success'];
+  return (
+    <>
+      <PageHeader
+        title="Tag"
+        description="A compact label element. Available in three visual types — filled, outlined, and highlighted — across five semantic colors. Supports a leading icon slot and an independent removable close button."
+      />
+
+      {/* ── Type ────────────────────────────────────────────────────────────── */}
+      <SubSection
+        id="otp-tag-type"
+        title="Type"
+        description="Filled uses a muted background. Outlined uses a white background with a border. Highlighted is the same as Filled but with semibold text."
+      >
+        <PreviewBox>
+          <div className="flex flex-wrap items-center gap-3">
+            <Tag label="Filled" type="filled" />
+            <Tag label="Outlined" type="outlined" />
+            <Tag label="Highlighted" type="highlighted" />
+          </div>
+        </PreviewBox>
+      </SubSection>
+
+      {/* ── Color ───────────────────────────────────────────────────────────── */}
+      <SubSection
+        id="otp-tag-color"
+        title="Color"
+        description="Five semantic colors available across all types."
+      >
+        <PreviewBox>
+          <div className="flex flex-col gap-3">
+            <div className="flex flex-wrap items-center gap-2">
+              {colors.map(c => <Tag key={c} label={c} type="filled" color={c} />)}
+            </div>
+            <div className="flex flex-wrap items-center gap-2">
+              {colors.map(c => <Tag key={c} label={c} type="outlined" color={c} />)}
+            </div>
+          </div>
+        </PreviewBox>
+      </SubSection>
+
+      {/* ── Size ────────────────────────────────────────────────────────────── */}
+      <SubSection
+        id="otp-tag-size"
+        title="Size"
+        description="Small (24 px) and Default (32 px)."
+      >
+        <PreviewBox>
+          <div className="flex items-center gap-3">
+            <Tag label="Small" size="sm" />
+            <Tag label="Default" size="md" />
+          </div>
+        </PreviewBox>
+      </SubSection>
+
+      {/* ── Leading & tailoring ─────────────────────────────────────────────── */}
+      <SubSection
+        id="otp-tag-slots"
+        title="Icon and removable"
+        description="Pass any React node as icon for a 16 px leading slot. removable adds an independent close button."
+      >
+        <PreviewBox>
+          <div className="flex flex-wrap items-center gap-3">
+            <Tag label="No slots" />
+            <Tag label="With icon" icon={<Tag01 className="size-4" />} />
+            <Tag label="Removable" removable onRemove={() => {}} />
+            <Tag label="Both" icon={<Tag01 className="size-4" />} removable onRemove={() => {}} />
+          </div>
+        </PreviewBox>
+      </SubSection>
+
+      {/* ── States ──────────────────────────────────────────────────────────── */}
+      <SubSection
+        id="otp-tag-states"
+        title="States"
+        description="Default and disabled. Hover and focus are CSS-driven."
+      >
+        <PreviewBox>
+          <div className="flex flex-wrap items-center gap-3">
+            <Tag label="Default" />
+            <Tag label="Disabled" disabled />
+            <Tag label="Disabled + icon" icon={<Tag01 className="size-4" />} disabled />
+            <Tag label="Disabled removable" removable disabled />
+          </div>
+        </PreviewBox>
+      </SubSection>
+    </>
+  );
+}
+
+// ── Section: Radio Button ─────────────────────────────────────────────────────
+// Source of truth: Figma uo2jhkx6oBwYpiFJxWnLJf node 381:943 (↳ Radio button page)
+
+function RadioButtonSection() {
+  return (
+    <>
+      <PageHeader
+        title="Radio Button"
+        description="A single-selection control within a group. Uses a native sr-only input for full keyboard and screen-reader support with a custom circular indicator driven by peer-checked, peer-focus-visible, and peer-disabled CSS modifiers."
+      />
+
+      <SubSection
+        id="otp-rb-variants"
+        title="Variants"
+        description="Unchecked and checked states. The inner dot appears when the input is selected."
+      >
+        <PreviewBox centered>
+          <div className="flex items-center gap-8">
+            <div className="flex flex-col items-center gap-2">
+              <RadioButton value="a" />
+              <span className="text-xs font-mono text-[var(--color-neutrals-content-noninteractive)]">unchecked</span>
+            </div>
+            <div className="flex flex-col items-center gap-2">
+              <RadioButton value="b" checked onChange={() => {}} />
+              <span className="text-xs font-mono text-[var(--color-neutrals-content-noninteractive)]">checked</span>
+            </div>
+          </div>
+        </PreviewBox>
+      </SubSection>
+
+      <SubSection
+        id="otp-rb-label"
+        title="With label and description"
+        description={<>Pass <InlineCode>label</InlineCode> for the primary text and <InlineCode>description</InlineCode> for the subtitle line indented under the label.</>}
+      >
+        <PreviewBox centered>
+          <div className="flex flex-col gap-3">
+            <RadioButton name="plan-label" value="starter" label="Starter" description="Up to 5 users" defaultChecked />
+            <RadioButton name="plan-label" value="pro"     label="Pro"     description="Up to 25 users" />
+            <RadioButton name="plan-label" value="ent"     label="Enterprise" description="Unlimited users" />
+          </div>
+        </PreviewBox>
+      </SubSection>
+
+      <SubSection
+        id="otp-rb-states"
+        title="States"
+        description={<>Use <InlineCode>forceState</InlineCode> to pin a visual state for QA without real interaction.</>}
+      >
+        <PreviewBox>
+          <div
+            className="inline-grid gap-x-10 gap-y-5 items-center"
+            style={{ gridTemplateColumns: '7rem repeat(2, 1fr)' }}
+          >
+            {/* Column headers */}
+            <div />
+            {(['unchecked', 'checked'] as const).map(v => (
+              <p key={v} className="text-xs font-mono text-[var(--color-neutrals-content-subdued)]">{v}</p>
+            ))}
+            {/* Rows */}
+            {([
+              { state: undefined,  label: 'default'  },
+              { state: 'hover',    label: 'hover'    },
+              { state: 'focus',    label: 'focus'    },
+              { state: 'disabled', label: 'disabled' },
+            ] as const).map(({ state, label: stateLabel }) => [
+              <p key={`lbl-${stateLabel}`} className="text-xs font-mono text-[var(--color-neutrals-content-noninteractive)]">
+                {stateLabel}
+              </p>,
+              <RadioButton key={`unchecked-${stateLabel}`} value="a" forceState={state} label="Label" />,
+              <RadioButton key={`checked-${stateLabel}`}   value="b" forceState={state} label="Label" checked onChange={() => {}} />,
+            ])}
+          </div>
+        </PreviewBox>
+      </SubSection>
+
+      <SubSection
+        id="otp-rb-group"
+        title="Radio Group"
+        description="Radios within the same name attribute are mutually exclusive — selecting one deselects the others natively."
+      >
+        <PreviewBox centered>
+          <div className="flex flex-col gap-3">
+            <RadioButton name="plan-group" value="starter"    label="Starter"    description="Up to 5 users" defaultChecked />
+            <RadioButton name="plan-group" value="pro"        label="Pro"        description="Up to 25 users" />
+            <RadioButton name="plan-group" value="enterprise" label="Enterprise" description="Unlimited users" />
+            <RadioButton name="plan-group" value="custom"     label="Custom"     description="Talk to sales" disabled />
+          </div>
+        </PreviewBox>
+      </SubSection>
+    </>
+  );
+}
+
+// ── Section: Switch ───────────────────────────────────────────────────────────
+// Source of truth: Figma uo2jhkx6oBwYpiFJxWnLJf — node 440:13 (Switch component set)
+
+function SwitchSection() {
+  return (
+    <>
+      <PageHeader
+        title="Switch"
+        description="A toggle control for binary on/off state. Uses a native sr-only input with role=switch for full keyboard and screen-reader support. The track and thumb visuals are driven by peer-checked and peer-disabled CSS modifiers."
+      />
+
+      <SubSection
+        id="otp-sw-variants"
+        title="Variants"
+        description="Unchecked and checked. The thumb slides right when the switch is on."
+      >
+        <PreviewBox centered>
+          <div className="flex items-center gap-8">
+            <div className="flex flex-col items-center gap-2">
+              <Switch />
+              <span className="text-xs font-mono text-[var(--color-neutrals-content-noninteractive)]">unchecked</span>
+            </div>
+            <div className="flex flex-col items-center gap-2">
+              <Switch checked onChange={() => {}} />
+              <span className="text-xs font-mono text-[var(--color-neutrals-content-noninteractive)]">checked</span>
+            </div>
+          </div>
+        </PreviewBox>
+      </SubSection>
+
+      <SubSection
+        id="otp-sw-label"
+        title="With label"
+        description={<>Pass any <InlineCode>ReactNode</InlineCode> to <InlineCode>label</InlineCode>. Clicking anywhere on the row toggles the switch.</>}
+      >
+        <PreviewBox centered>
+          <div className="flex flex-col gap-3">
+            <Switch label="Enable notifications" defaultChecked />
+            <Switch label="Dark mode" />
+            <Switch label="Auto-save" defaultChecked />
+          </div>
+        </PreviewBox>
+      </SubSection>
+
+      <SubSection
+        id="otp-sw-states"
+        title="States"
+        description={<>Use <InlineCode>forceState</InlineCode> to pin a visual state for QA without real interaction. Both variants × four states are shown below.</>}
+      >
+        <PreviewBox>
+          <div
+            className="inline-grid gap-x-10 gap-y-5 items-center"
+            style={{ gridTemplateColumns: '7rem repeat(2, 1fr)' }}
+          >
+            <div />
+            {(['unchecked', 'checked'] as const).map(v => (
+              <p key={v} className="text-xs font-mono text-[var(--color-neutrals-content-subdued)]">{v}</p>
+            ))}
+            {([
+              { state: undefined,   label: 'default'  },
+              { state: 'hover',     label: 'hover'    },
+              { state: 'focus',     label: 'focus'    },
+              { state: 'disabled',  label: 'disabled' },
+            ] as const).map(({ state, label: stateLabel }) => [
+              <p key={`lbl-${stateLabel}`} className="text-xs font-mono text-[var(--color-neutrals-content-noninteractive)]">
+                {stateLabel}
+              </p>,
+              <Switch key={`unchecked-${stateLabel}`} forceState={state} />,
+              <Switch key={`checked-${stateLabel}`}   forceState={state} checked onChange={() => {}} />,
+            ])}
+          </div>
+        </PreviewBox>
+      </SubSection>
+
+      <SubSection
+        id="otp-sw-disabled"
+        title="Disabled"
+        description="Disabled switches use the noninteractive background token and 0.4 opacity on the whole control. The input is unfocusable and aria-disabled is set."
+      >
+        <PreviewBox centered>
+          <div className="flex items-center gap-8">
+            <div className="flex flex-col items-center gap-2">
+              <Switch disabled />
+              <span className="text-xs font-mono text-[var(--color-neutrals-content-noninteractive)]">unchecked</span>
+            </div>
+            <div className="flex flex-col items-center gap-2">
+              <Switch disabled checked onChange={() => {}} />
+              <span className="text-xs font-mono text-[var(--color-neutrals-content-noninteractive)]">checked</span>
+            </div>
+          </div>
+        </PreviewBox>
+      </SubSection>
+    </>
+  );
+}
+
 // ── Content router ────────────────────────────────────────────────────────────
 
 function SectionContent({ id }: { id: SectionId }) {
@@ -862,7 +1739,14 @@ function SectionContent({ id }: { id: SectionId }) {
     case 'avatar':            return <AvatarSection />;
     case 'badge':             return <BadgeSection />;
     case 'button':            return <ButtonSection />;
+    case 'button-group':      return <ButtonGroupSection />;
     case 'breadcrumbs':       return <BreadcrumbsSection />;
+    case 'card':              return <CardSection />;
+    case 'checkbox':          return <CheckboxSection />;
+    case 'input':             return <InputSection />;
+    case 'tag':               return <TagSection />;
+    case 'radio-button':      return <RadioButtonSection />;
+    case 'switch':            return <SwitchSection />;
     case 'loading-indicator': return <LoadingSection />;
     case 'skeleton':          return <SkeletonSection />;
   }

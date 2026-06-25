@@ -24,6 +24,64 @@ const COLOR: Record<Change['type'], string> = {
 
 const releases: Release[] = [
   {
+    version: '0.4.0',
+    date: '2026-06-24',
+    changes: [
+      {
+        type: 'added',
+        component: 'Input',
+        note: 'Input component from Figma node 417:11499 (file uo2jhkx6oBwYpiFJxWnLJf). Single-line text field. Props: label, required, optional, helperText, error, leadingIcon (20 px slot), trailingIcon (16 px slot, auto-replaced by error icon when error is set), forceState for Storybook QA. Error state drives aria-invalid, aria-errormessage, and aria-describedby automatically. React.forwardRef for form library compatibility. Focus ring via :focus-within on the wrapper div. No size or visual variant axes — single appearance per Figma. All styling bound to design-system tokens; zero hardcoded values.',
+      },
+    ],
+  },
+  {
+    version: '0.3.0',
+    date: '2026-06-24',
+    changes: [
+      {
+        type: 'added',
+        component: 'Tag',
+        note: 'Tag component from Figma node 417:5907 (file uo2jhkx6oBwYpiFJxWnLJf). Three visual types (filled, outlined, highlighted), five semantic colors (default, primary, error, warning, success), two sizes (sm=24px, md=32px). Leading icon slot (16px, any React node), removable close button (independent focusable <button> with aria-label). Disabled state via HTML disabled + aria-disabled. forceState prop for Storybook visual QA. All styling bound to design-system tokens; zero hardcoded values.',
+      },
+    ],
+  },
+  {
+    version: '0.2.0',
+    date: '2026-06-24',
+    changes: [
+      {
+        type: 'added',
+        component: 'Card',
+        note: 'Card component family from Figma node 413:1320 (file uo2jhkx6oBwYpiFJxWnLJf). Six named exports: Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter. CardTitle accepts an `as` prop for semantic heading level (default h3). No structural variants in Figma (no shadow, no size). All styling bound to design-system tokens; zero hardcoded values. Storybook stories cover Default, HeaderOnly, NoDescription, NoFooter, LongContent, Composed, and AllVariants.',
+      },
+      {
+        type: 'added',
+        component: 'Button',
+        note: 'Button component from Figma node 373:5136. Four hierarchy levels (primary / secondary / text / text-primary), two sizes (sm / md), destructive treatment, icon leading/trailing slots, icon-only mode, loading state with spinner, and badge dot indicator. forceState prop for QA/Storybook. All tokens from design system CSS vars.',
+      },
+      {
+        type: 'added',
+        component: 'ButtonGroup',
+        note: 'ButtonGroup component from Figma node 387:696. Joins two or more Buttons into a connected control — adjacent borders collapse to a single 1 px line, outer corners retain --radius-md. Supports horizontal (default) and vertical orientations, size propagation via context, and asRow wrapper for spacing multiple sub-groups.',
+      },
+      {
+        type: 'added',
+        component: 'Skeleton',
+        note: 'Skeleton placeholder component from Figma node 382:2542. Compose blocks at any width, height, and border-radius via props. Shimmer animation via CSS gradient sweep keyframe; respects prefers-reduced-motion. forceState="static" freezes the animation for snapshot tests.',
+      },
+      {
+        type: 'added',
+        component: 'Checkbox',
+        note: 'Checkbox component from Figma node 377:756. Three variants: unchecked, checked, indeterminate. Native sr-only <input> with peer-checked / peer-focus-visible / peer-disabled CSS modifiers driving the visual box and icon spans. Indeterminate state set via useEffect on input.indeterminate. forceState prop for QA/Storybook. Compound disabled+checked fill handled in styles/checkbox.css.',
+      },
+{
+        type: 'added',
+        component: 'RadioButton',
+        note: 'RadioButton component from Figma node 381:943 (↳ Radio button page). Unchecked/Checked × Default/Hover/Disabled variants. Native sr-only <input type="radio"> with peer-based circular indicator and inner dot span. Hover ring via box-shadow. Optional label and description (subtitle) props; description indented 24 px to align with label text. forceState prop for QA/Storybook. Compound checked+disabled fill handled in styles/radiobutton.css.',
+      },
+    ],
+  },
+  {
     version: '0.1.0',
     date: '2026-06-19',
     changes: [
